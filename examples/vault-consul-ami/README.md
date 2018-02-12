@@ -45,7 +45,7 @@ To build the Vault and Consul AMI:
 1. Update the `variables` section of the `vault-consul.json` Packer template to specify the AWS region, Vault 
    version, Consul version, and the paths to the TLS cert files you just generated. 
 
-1. Run `packer build vault-consul.json`.
+1. Run `packer build vault-consul.json`.  More specifically, `VPC_ID=vpc-15fd5b6c SUBNET_ID=subnet-288b6e51 SECURITY_GROUP_ID=sg-05a84c7a packer build vault-consul.json`
 
 When the build finishes, it will output the IDs of the new AMIs. To see how to deploy one of these AMIs, check out the 
 [vault-cluster-private](https://github.com/hashicorp/terraform-aws-vault/tree/master/examples/vault-cluster-private) and [vault-cluster-public](https://github.com/hashicorp/terraform-aws-vault/tree/master/examples/vault-cluster-public) 
