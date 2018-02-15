@@ -15,20 +15,40 @@ variable "ami_id" {
   description = "The ID of the AMI to run in the cluster. This should be an AMI built from the Packer template under examples/vault-consul-ami/vault-consul.json."
 }
 
+variable "subnet_ids" {
+  description = "The list of Subnet IDs that will allow the Vault and Consul servers to egress out"
+  type = "list"
+}
+
 variable "ssh_key_name" {
   description = "The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair."
   default = "temp"
+}
+
+variable "vault_allowed_ssh_cidr_blocks" {
+  description = "The list of CIDR blocks that will allow SSH into the Vault servers"
+  type = "list"
+}
+
+variable "vault_allowed_inbound_cidr_blocks" {
+  description = "The list of CIDR blocks that will allow inbound access into the Vault servers"
+  type = "list"
+}
+
+variable "consul_allowed_ssh_cidr_blocks" {
+  description = "The list of CIDR blocks that will allow SSH into the Consul servers"
+  type = "list"
+}
+
+variable "consul_allowed_inbound_cidr_blocks" {
+  description = "The list of CIDR blocks that will allow inbound access into the Consul servers"
+  type = "list"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
 # ---------------------------------------------------------------------------------------------------------------------
-
-variable "subnet_ids" {
-  description = "The list of Subnet IDs that will allow the Vault and Consul servers to egress out"
-  type = "list"
-}
 
 variable "aws_region" {
   description = "The AWS region to deploy into (e.g. us-east-1)."
