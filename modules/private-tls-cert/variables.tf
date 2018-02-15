@@ -20,7 +20,7 @@ variable "private_key_file_path" {
 
 variable "owner" {
   description = "The OS user who should be given ownership over the certificate files."
-  default = "ec2-user"
+  default = "abhartiya"
 }
 
 variable "organization_name" {
