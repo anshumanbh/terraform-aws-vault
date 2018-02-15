@@ -27,6 +27,7 @@ variable "ssh_key_name" {
 
 variable "subnet_ids" {
   description = "The list of Subnet IDs that will allow the Vault and Consul servers to egress out"
+  type = "list"
 }
 
 variable "aws_region" {
