@@ -17,6 +17,7 @@ variable "ami_id" {
 
 variable "ssh_key_name" {
   description = "The name of an EC2 Key Pair that can be used to SSH to the EC2 Instances in this cluster. Set to an empty string to not associate a Key Pair."
+  default = "temp"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -24,9 +25,13 @@ variable "ssh_key_name" {
 # These parameters have reasonable defaults.
 # ---------------------------------------------------------------------------------------------------------------------
 
+variable "subnet_ids" {
+  description = "The list of Subnet IDs that will allow the Vault and Consul servers to egress out"
+}
+
 variable "aws_region" {
   description = "The AWS region to deploy into (e.g. us-east-1)."
-  default     = "us-east-1"
+  default     = "us-west-2"
 }
 
 variable "vault_cluster_name" {
@@ -66,7 +71,6 @@ variable "consul_cluster_tag_key" {
 
 variable "vpc_id" {
   description = "The ID of the VPC to deploy into. Leave an empty string to use the Default VPC in this region."
-  default     = ""
 }
 
 variable "s3_bucket_name" {
@@ -76,5 +80,5 @@ variable "s3_bucket_name" {
 
 variable "force_destroy_s3_bucket" {
   description = "If you set this to true, when you run terraform destroy, this tells Terraform to delete all the objects in the S3 bucket used for backend storage (if configured). You should NOT set this to true in production or you risk losing all your data! This property is only here so automated tests of this module can clean up after themselves."
-  default     = false
+  default     = true
 }
